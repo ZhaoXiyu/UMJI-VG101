@@ -1,0 +1,33 @@
+cls
+npp_console -
+npe_console m-
+npp_console +
+npp_saveall
+set EXT ~ strupper $(EXT_PART)
+if "$(EXT)"=".TEX" goto pdflatex
+if "$(EXT)"=".C" goto gcc
+echo "Illeagle Extension.Nothing to Complile"
+goto end
+
+:pdflatex
+echo "Try compiling $(FILE_NAME) with pdflatex: "
+taskkill /IM "SumatraPDF.exe" 
+pdflatex -jobname="$(NAME_PART)" "$(FULL_CURRENT_PATH)"
+npp_run "F:\Joint Institute\pdf\SumatraPDF.exe" "$(NAME_PART).pdf"
+echo "Compile with pdflatex finished"
+goto end
+
+:gcc
+set cb_path=C:\Program Files (x86)\CodeBlocks
+env_set path=$(cb_path)\MinGW\bin;$(SYS.PATH)
+echo "Try compiling $(FILE_NAME) with gcc: "
+mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" -o "$(NAME_PART).exe"
+if $(EXITCODE)!=0 goto cmpfail 
+echo "Executing $(CURRENT_DIRECTORY)\$(NAME_PART).exe"
+npp_run "$(cb_path)\cb_console_runner.exe" "$(CURRENT_DIRECTORY)\$(NAME_PART).exe"
+goto end
+:cmpfail
+echo "Error try genearting PE file"
+goto end
+
+:end

@@ -1,0 +1,26 @@
+cls
+npp_console -
+npe_console m-
+npp_console +
+npp_saveall
+set sid=5143709219
+set rar_path=C:\Program Files\WinRAR
+if $(ARGC)=1 goto nodescription
+set des=_$(ARGV[1])
+:return_nodescription
+
+set output_name=$(sid)$(des).rar
+cmd /c if exist "$(sid)$(des).rar" del /F "$(sid)$(des).rar"
+"$(rar_path)\rar.exe" a -ry "$(output_name)" README*
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *$(EXT_PART)
+goto end
+
+:nodescription
+echo "No Description Specified"
+inputbox "Description:"
+if "$(INPUT) "=" " goto return
+set des=_$(INPUT)
+:return
+goto return_nodescription
+
+:end
