@@ -12,16 +12,25 @@ goto end
 :pdflatex
 echo "Try compiling $(FILE_NAME) with pdflatex: "
 taskkill /IM "SumatraPDF.exe" 
-pdflatex -jobname="$(NAME_PART)" "$(FULL_CURRENT_PATH)"
+pdflatex -halt-on-error -jobname="$(NAME_PART)" "$(FULL_CURRENT_PATH)"
+if $(EXITCODE)!=0 goto latexcmpfail
 npp_run "F:\Joint Institute\pdf\SumatraPDF.exe" "$(NAME_PART).pdf"
 echo "Compile with pdflatex finished"
+goto end
+:latexcmpfail
+echo "LaTeX Compilation Failed."
 goto end
 
 :gcc
 set cb_path=C:\Program Files (x86)\CodeBlocks
 env_set path=$(cb_path)\MinGW\bin;$(SYS.PATH)
 echo "Try compiling $(FILE_NAME) with gcc: "
-mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" -o "$(NAME_PART).exe"
+taskkill /IM "$conhost.exe"
+if $(EXITCODE)=0 goto tkillsucc
+taskkill /IM "$(NAME_PART).exe" /F
+taskkill /IM "conhost.exe" /F
+:tkillsucc
+mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" "F:\Joint Institute\VG101 Intro-to-Com-Prog\exprc\exclib.c" -o "$(NAME_PART).exe"
 if $(EXITCODE)!=0 goto cmpfail 
 echo "Executing $(CURRENT_DIRECTORY)\$(NAME_PART).exe"
 npp_run "$(cb_path)\cb_console_runner.exe" "$(CURRENT_DIRECTORY)\$(NAME_PART).exe"

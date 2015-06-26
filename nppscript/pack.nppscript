@@ -12,7 +12,12 @@ set des=_$(ARGV[1])
 set output_name=$(sid)$(des).rar
 cmd /c if exist "$(sid)$(des).rar" del /F "$(sid)$(des).rar"
 "$(rar_path)\rar.exe" a -ry "$(output_name)" README*
-"$(rar_path)\rar.exe" a -ry "$(output_name)" *$(EXT_PART)
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.c
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.m
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.cpp
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.h
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.lib
+"$(rar_path)\rar.exe" a -ry "$(output_name)" *.o
 goto end
 
 :nodescription
