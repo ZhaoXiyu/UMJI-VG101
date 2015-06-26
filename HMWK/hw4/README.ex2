@@ -1,0 +1,8 @@
+INPUT: 2 Integers,a,b
+OUTPUT: 1 Integer,g, a and b's greatest common dividor
+
+	if a mod b = 0 
+		gcd(a,b)=b
+	else 
+		gcd(a,b)=gcd(b,a mod b)
+	end

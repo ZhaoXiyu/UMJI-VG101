@@ -1,0 +1,16 @@
+INPUT: 1 integer,n the number of points
+OUTPUT: 1 graph.
+1. generate a matrix of point using rand() in to array points
+2. assign the first of the array to be (0,0)
+3. use a matrix distace(n*n) to determine the the distance of point i,j
+4. draw out all points using plot()
+5. for every point,determine the nearest/furthest point accordinglye
+     i.e
+       if mod(i,2)==0
+            locate the closest using min(),store in j
+       else
+            locate the furthest using max(),store in j
+       end;
+       draw a line between i,j;
+   each time update the user interface with "drawnow"
+6. draw a line between 1st and nth.

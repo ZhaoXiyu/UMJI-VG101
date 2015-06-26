@@ -1,0 +1,42 @@
+INPUT:  1 integer,    n,  the number that starts to look for specified prime.
+OUTPUT: 3 integers,   p,    sqr1,   sqr2, 
+                      p: The next Phythagorean prime.
+                      sqr1,spr2. 2 sqaures that adds up to p
+Algrorithm:
+Calculate the p:
+1. Handle the input: 
+   Try acquire the next integer that fits the form "4i+1".
+   n=4*ceil(n/4)+1
+2. Determine the p;
+   We continuoully add 4 to n, until n is a prime number.
+   NOTE:Mathematically we can prove that an odd prime that can be decompose
+        into 2 sqaures if it can be expressed in the form 4n+1; 
+        An number is prime if it can't be divided by any integer other than
+        and itself.
+    while any(mod(n,[3:2:floor(sqrt(n))])==0);
+        n+=4
+   loop;
+   % The number n now is the specified p.
+3. Decompose the p
+   NOTE:Since p is odd. Its decomposition must results in the squares of 1
+        odd number and 1 even number.Each number must smaller than sqrt(q).
+        Applying this essentially scales down the problem by 2.
+   1.We generate a array of all possible sqaures of even numbers that is 
+     smaller than sqrt(p);
+        vecsub=[2:2:sqrt(p)].^2;
+   2.Subtract the array from p;
+        vecans=p-vecsub;
+   3.Take the sqaure root of each element in vecans;
+        vecans=sqrt(vecans);
+   4.Check any of them are integer,find the first (and only) one that is an
+     integer. Preserve its index. A number is an integer if only if it
+     equals to its integer part.
+     index=find(floor(vecans)=vecans);
+4.n is the specified prime number.
+  vecsub(index) is one of the squares.
+  n-vecsub(index) is the other square.
+  Display the results in proper form.
+        
+
+   
+   

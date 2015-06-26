@@ -1,0 +1,10 @@
+INPUT: 1 Integer(uint32), The number of meters the runner should run
+OUTPUT: 2 Integers(uint32), First is the laps, Second is the mters to finish another lap
+Algorithm:
+1. Take in 1 Int32 integer, denoted by L
+2. Take the modulas of L with MetersPerLap(400), denoted by R
+3. L = L - R
+4. Calculate the laps as Laps = L / MetersPerLap
+5. Return Laps and (MetersPerLap-R) in proper form
+
+Note: In this programme, Constant MetersPerLap represents the meters of a single lap, assumed to be 400m.

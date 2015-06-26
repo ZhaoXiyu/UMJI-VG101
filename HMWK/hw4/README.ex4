@@ -1,0 +1,21 @@
+INPUT: 3 doubles,a,b,c the coefficients of the equation
+						ax^2+bx+c=0
+OUTPUT: 1 or 2 doubles, the root of the equation
+if a=0
+	print Its not an quadratic equation
+	return
+alpha = b^2-4ac
+if alpha < 0 
+	print NO REAL ROOT
+	return
+if alpha =0
+	print 1 REAL ROOT
+	x=-b/(2a)
+	print x
+	return
+x1 = -b + sqrt(alpha)
+x2 = -b - sqrt(alpha)
+x1/=(2a)
+x2/=(2a)
+print x1,x2
+return

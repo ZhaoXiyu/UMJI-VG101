@@ -1,0 +1,5 @@
+Input: Amount of benefit of first 10 years
+Output: A file with each line representing the year against yearly profit.
+1. Use geometric summing formula calculate the first year's profit.
+2. Cal culate the profit of each year.
+3. dump the info into a file.

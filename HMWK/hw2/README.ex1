@@ -1,0 +1,13 @@
+INPUT: Intergers(at least 1), Year, a year to tell whether it is a leap year.
+OUTPUT: Strings, , indicating whether the year is a leap year.
+Algrorithm
+1. Take in an integer year_n.
+Do the following until year_n is a valid year.
+    if year_n<0 or year_is not an integer
+        prompt for another input.
+Loop  
+2. Check whether year_n it is a leap year.
+    A year is a NOT leap year if 
+    It cannot be divided by 4;
+    OR (It can be divided by 100 AND cannot be divided by 400)
+3. Display in proper form.

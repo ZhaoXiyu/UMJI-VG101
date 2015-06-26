@@ -1,0 +1,19 @@
+INPUT: 2 Comple Numbers (4 doubles), c1=a+bi;c2=c+di
+	   1 String, s,Specified Operation(ADD or MUL)
+OUTPUT: The result
+Complex:{double Re,double Im}
+	if s="ADD"
+		call result=ADD(c1,c2)
+		print result
+	if s="MUL"
+		call result=MUL(c1,c2)
+		print result
+
+	complex ADD(c1,c2)
+		result.re = c1.re+c2.re
+		result.im = c1.im+c2.im
+		return result
+	
+	complex MUL(c1,c2)
+		result.re = c1.re * c2.re - c1.im * c2.im
+		result.im = c1.re * c2.im + c1.im * c2.re

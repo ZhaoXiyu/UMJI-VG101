@@ -1,0 +1,5 @@
+INPUT: 1 image, p
+OUTPUT:
+1. Read in the image p using funtiion imread into an array img.
+2. Claculate the inverse by subtracting from 255 to corresponding channel.
+3. display images using image.

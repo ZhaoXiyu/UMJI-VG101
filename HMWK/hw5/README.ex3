@@ -1,0 +1,18 @@
+Input: 	NULL
+Output: 3*52 cards, in string.
+Data structure:
+2 Indexes. Indexing the name of the faction and number
+			of cards.
+1 2-dimensional array of integers. Each column represents a card.
+	first row is faction. second row is number.
+
+1. Generate data in the array.
+	for i:0 to 3
+		for j:0 to 12
+			a[13*i+j][0]=i;
+			a[13*i+j][1]=j;
+2. Print out the array.
+3. Shuffle the array by swapping each entry with a random entry.
+3. Print out the array.
+4. Sort the array using bubble sort.
+5. Print out the array.

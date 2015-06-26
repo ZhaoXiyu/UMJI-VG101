@@ -1,0 +1,20 @@
+We know that for the n th square, the amount of grains will be
+     0000000010000000B   (Binary)
+	         |
+		  (n th digit)
+For a chess board, there are 64 squares.
+The Maximum amount of grains in one square will be
+     100000000000...0000B  (Binary)
+	 |
+	 (64th digit)
+Summing them essetially gives:
+     1111111111111...1111B  (Binary)
+	 |==================|
+	     (64 digits)
+Which is the IntMax for uint64
+Or 2^64-1 Mathematically.
+
+INPUT: Null
+OutPut: 1 Integer(uint64), grains of wheat the King has to give.
+Algrithms: 
+1. Return intmax('uint64') in proper form

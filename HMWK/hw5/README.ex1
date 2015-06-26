@@ -1,0 +1,8 @@
+INPUT: 1 integer.n, the range to look for primes in.
+OUTPUT: Integers. Prime numbers smaller then 1
+1. r= sqrt(n);
+2. int flag[n+1]; //set up a bool array. Tag whether it is an prime.
+3. for i:1 to r
+		if(flag[i]==0)//if i is prime
+			for(j=i<<1;j<=n;j+=i)flag[j]==1; //the multiples of i is not prime.
+4. Print out all elements with flag[i]==0 in proper form.

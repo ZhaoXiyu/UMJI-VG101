@@ -1,0 +1,38 @@
+% The data to be imported 
+Type     |   Color   | Quantity |  Bought
+-----------------------------------------
+         |    Blue   | 2        |   04/2005
+Jumpers  |    Brown  | 3        |   02/2013
+         |    Green  | 5        |   01/2015
+-----------------------------------------
+         |   Black   | 3        |   06/2012
+Trousers |   Grey    | 2        |   04/2011
+         |   White   | 1        |   12/2013
+-----------------------------------------
+         |   Blue    | 1        |   05/2010
+         |   Green   | 2        |   09/2014
+T-shirts |    Red    | 3        |   01/2012
+         |   White   | 2        |   03/2008
+         |   Yellow  | 1        |   11/2012
+-----------------------------------------
+INPUT: Data Set Shown above;
+OUTPUT: 1 String: The Type and Color of the stock that has largest quantity
+        1 Integer: The average age of the stock.
+Algorithm:
+1. Import the data.
+   Use a structure array named 'inventory' to store each kind of stock as a separate entry.
+    inventory:   Type(String), Color(String), Quatity(Double), BoughtDate(Double)
+   mannualy import all data into the array.
+   NOTE: Dates are stored as real numbers so that arithmatic operations such
+   as take average, calculate difference can be easily applied to them. In
+   order to do so, string input of date is converted to real number, using 
+   'datenum' the function takes in 2 string, 'date' and 'format'.
+2. Calculate results.
+   1.find the max of the 'Quantity' field using 'max' function, the funtion.
+     return the max number along with its index.
+   2.use the index to find its type and color. Return the results in proper
+    form.
+   3,Calculate the average of the date in 'BoughtDate' field.
+        avg= sum(BoughtDate.*Quantity)/sum(Quantity)
+     Calculate the difference using 'yearfrac'
+     Return the results in proper form.

@@ -1,0 +1,31 @@
+INPUT: 1 integer, n , the number to read, less than 999,999,999
+OUTPUT: 1 string, s . the read of the number.
+Algrorithm:
+1. read in the number n.
+Define a function str=read(n)
+2. If n>1,000,000
+        return read( n \ 1,000,000) & 'million ' & "the rest"
+        Test for the remainder, if <100
+              use "million and "
+        Else
+              Use 'million '
+   Elseif n>1000
+        return read( n \ 1,000) & 'thousand' & "the rest"
+        Test for the remainder, if <100
+              use "thousand and "
+        Else
+              Use 'thousand '
+   Elseif n>100
+        return read( n \ 100) & 'Hundred' & the rest
+        Test for the latter digits, if not zero
+              use "Hundred and"
+        Else
+              Use "hundred"
+   Elseif n>20
+        return 'twenty' to 'ninety' & the rest
+   Elseif n>0
+        return 'one' to 'twenty'
+   Elseif n=0
+        return ''
+   End
+3. s = read(n)

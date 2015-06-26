@@ -1,0 +1,44 @@
+INPUT: 2 unsigned large integers, unsigned long integer a,b
+OUTPUT: 1 unsigned long integer, a*b
+Notes:
+The Karatsuba algorithm is a fast multiplication algorithm. 
+It was discovered by Anatolii Alexeevitch Karatsuba in 1960 and published in 1962.
+It reduces the multiplication of two n-digit numbers to 
+at most  n^{\log_23} single-digit multiplications in general.
+Its faster then classical n^2 multiplication.
+
+Karatsuba algorithm implemented in Binary as the following:
+long int function mult(long int a,long int b):
+1. 	//Make sure a>b;
+	if(a<b)SWAP(a,b);
+2. //End of recursion,special case b=0
+	if(b==0)return 0;
+3. 	//Count the binary digits of b
+	//Use n as a counter.
+	for(n=-1, i = 1; i <= b; i<<=1, n++);
+4.	//Count the binary digits of a
+	//Use N as a counter.
+	for(N=n; i <= a; i<<=1, N++);
+5. 	//Acquire the last (n-1) digits of b
+	//Store them in y0
+	y0=b&((1<<n)-1);
+6.	//Acquire first (N-1) digits of a
+	//Store them in x0
+	x0=a&((1<<N)-1);
+7. 	//Calculate x0y0 recursively,store in z0
+	z0=mult(x0,y0);
+8.  // the end result will be 
+	//(denote yh=xh=1 as the highest digit of a,b ) 
+	// r=(yh*2^N+y0)(xh*2^n+x0)
+	// r=yh*xh*2^(N+n)+yh*x0*2^N+y0*xh*2^n+x0*y*0
+	// r=1<<(N+n)+x0<<N+y0<<n+z0
+	z1=1;
+	r=z1<<(N+n)+x0<<N+y0<<n+z0;
+9. 	return z.
+
+The adjustments applied to increase efficiency:
+1. 	Use XOR swap to swap between integers. 
+	Use only 3 cpu cycles.
+2.	instead of using mul and div;
+	use bit opearations(shifts,masks)instead;
+3.	Use a bitwise mask to acquire last corresponding digits.

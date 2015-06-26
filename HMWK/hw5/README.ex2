@@ -1,0 +1,11 @@
+Input: 	1 string, s , Name of the day (e.g. "monday")
+		1 integer, n, 1 to 12, number of the month
+Output: A calandar of specified month
+1.	 Inteperet the string to an integer (0~6).
+	Adding the first 3 letters together, compare the sum.
+2.	Use switch the acquire the integer,stored in nday
+Printing the calandar:
+3.	Print the title."Calendar of Month"
+4.	Print the leading spaces: i.e.
+		printf("\t") nday times.
+5.	Print the days of the month accordingly.

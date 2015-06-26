@@ -1,0 +1,18 @@
+INPUT: 1 string; s,Intepreted as a mathematical function.
+       2 double:x0,x1; an interval containing the root;
+       1 double; p: the percision required;
+OUTPUT: 1 double; root; the root of f(x)=0;
+Algorithms:
+    Define function rec()
+        Take in 2 arguments x_n-2 ,x_n-1
+        Return 1 argument. x_n
+        This function calculates the next root as the formula
+    In the main function:
+        Take in an input as a function.
+        Take in an interval ( 2 doubles)
+        Take in a double indicating the percision.
+        While the interval>percision
+            t=rec(a,b);
+            a=b;
+        Use 1/2*(a+b) as the root
+        Display the results in proper forms.

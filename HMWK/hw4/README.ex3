@@ -1,0 +1,9 @@
+INPUT: 1 character,c
+OUTPUT: 1 string
+
+if c is lowercase
+	c=uppercase(c)
+if c={'A','E','I','O','U'}
+	print this is a vowel.
+else
+	print this is a conansant.
