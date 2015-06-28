@@ -30,7 +30,8 @@ if $(EXITCODE)=0 goto tkillsucc
 taskkill /IM "$(NAME_PART).exe" /F
 taskkill /IM "conhost.exe" /F
 :tkillsucc
-mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" "F:\Joint Institute\VG101 Intro-to-Com-Prog\exprc\exclib.c" -o "$(NAME_PART).exe"
+rem mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" "F:\Coding\UMJI-VG101\clib\exclib.c" -o "$(NAME_PART).exe"
+mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" -o "$(NAME_PART).exe"
 if $(EXITCODE)!=0 goto cmpfail 
 echo "Executing $(CURRENT_DIRECTORY)\$(NAME_PART).exe"
 npp_run "$(cb_path)\cb_console_runner.exe" "$(CURRENT_DIRECTORY)\$(NAME_PART).exe"
@@ -40,3 +41,4 @@ echo "Error try genearting PE file"
 goto end
 
 :end
+cli

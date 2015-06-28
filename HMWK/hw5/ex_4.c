@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #define SWAP(a,b) { a ^= b; b ^= a; a ^= b; }
-//#define TESTC
 unsigned long int mult(unsigned long int a, unsigned long int b);
 int getDigits(unsigned long int,int);
 
@@ -28,15 +27,16 @@ int main(){
 	int n,i,j;
 	char* digit1=malloc(ITER);
 	char* digit2=malloc(ITER);
-	unsigned long int* data=malloc(ITER*sizeof(int));
-	for(j=0;j<ITER;j++)data[j]=rand()*rand();
+	unsigned long int* data=malloc(ITER*sizeof(long));
+	for(j=0;j<ITER;j++)data[j]=rand();
 	clock_t t0=clock();
 	for(j=0;j<ITER;j++)
 		for(digit1[j]=-1, i = 1; i <= data[j]; i<<=1, digit1[j]++);
 	clock_t t1=clock();	
-	for(j=0;j<ITER;j++)digit2[j]=getDigits(j,32);
+	for(j=0;j<ITER;j++)digit2[j]=getDigits(j,sizeof(unsigned long));
 	clock_t t2=clock();
 	printf("%g,%g",(t1-t0)/(double)(CLOCKS_PER_SEC),(t2-t1)/(double)(CLOCKS_PER_SEC));
+	free(digit1);free(digit2);free(data);
 #endif
 	return 0;
 }
@@ -62,7 +62,7 @@ unsigned long int mult(unsigned long int a, unsigned long int b){
 	//the highest bit of the result
 	return ((z1<<i)+(x0<<n)+(y0<<N)+z0);
 	//calculation of the end result.
-	//(denote yh=xh=1 as the highest digit of a,b )
+	//(denote yh=xh=1 as the highest0digit of a,b )
 	// r=(yh*2^N+y0)(xh*2^n+x0)
 	// r=yh*xh*2^(N+n)+yh*x0*2^N+y0*xh*2^n+x0*y*0
 	// r=1<<(N+n)+x0<<N+y0<<n+z0
