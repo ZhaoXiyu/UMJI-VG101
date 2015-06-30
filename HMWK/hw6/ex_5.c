@@ -12,9 +12,9 @@ int main(){
 }
 
 void addElem(void *elem, uset *set){
-	int i=0;
-	for(i=0;i<set->card;i+=set->type)
-		if(bcmp((byte*)elem,(byte*)set->elem+i,set->type))return;//Same element already exist
+	byte* i;
+	for(i=set->elem;i-(byte*)set->elem<set->card;i+=set->type)
+		if(bcmp((byte*)elem,i,set->type))return;//Same element already exist
 	if(((set->card)%MCHNK)==0)//if the space is critical.
 		realloc(set->elem,set->card+MCHNK);//Resize to 64 more.
 	memcpy(elem, (byte*)set->elem+(1+set->card), set->type);//add to the set.
@@ -23,12 +23,15 @@ void addElem(void *elem, uset *set){
 }
 
 void remElem(void *elem, uset *set){
-	int i,j=0;
+	byte* i;
+	for(i=set->elem;i-(byte*)set->elem<set->card;i+=set->type)
+		if(bcmp((byte*)elem,i,set->type)){//Same element already exist
+			memmove(i,i+set->type,set->card-(i+set->type-elem));
 	for(i=0;i<set->card;i+=set->card)
-		if(bcmp(elem,set->elem,set->type)){//find corresponding element.
+		if(bcmp(elem,(char*)set->elem+i,set->type)){//find corresponding element.
 			for(j=i;j<card;j++) //move elements after it foward
-				byte tptr=(char*)set->
-				=olem[j+1];
+				byte tptr=(char*)set->elem;
+				tptr[j]=tptr[j+set->type];
 			card--;//dec card.
 			if((card>INITSETSIZE)&&(card%INITSETSIZE))realloc(set->elem,card);
 			//if new cardinal>64 and 64n then desize to the new cardinal
@@ -62,7 +65,7 @@ void* umalloc(size_t size){
 int bcmp(unsigned char* ptr1,unsigned char* ptr2,size_t size){
 	while(size>0){
 		size--;//start from the last byte
-		if(ptr1[size]!=ptr2[size])return 0;
+		if(ptr1[size]!=ptr2[size])return 0;//some different;
 	}
 	return 1;
 }
