@@ -31,7 +31,7 @@ void addElem(void *elem, uset *set){
 	byte* i;
 	for(i=ELEM;(i-ELEM)<CARD;i+=TYPE)
 		if(bcmp(elem,i,TYPE))return;//Same element already exist
-	printf("%d %d\n",*(int*)elem,CARD);
+	//printf("%d %d\n",*(int*)elem,CARD);
 	if(((CARD-INITSETSIZE*TYPE)%MCHNK)==0&&CARD>=INITSETSIZE*TYPE)//if the space is critical.
 		set->elem=urealloc(ELEM,CARD+MCHNK);//Resize to 64 more.
 	memcpy(ELEM+CARD,elem,TYPE);//add to the set.
@@ -42,7 +42,7 @@ void addElem(void *elem, uset *set){
 
 void remElem(void *elem, uset *set){
 	byte* i;
-	printf("%d\n",*(int*)elem);
+	//printf("%d\n",*(int*)elem);
 	for(i=ELEM;(i-ELEM)<CARD;i+=TYPE)
 		if(bcmp(elem,i,TYPE)){
 			memmove(i,i+TYPE,CARD-(i-ELEM)-TYPE+1);//Push all memory forward type bytes
