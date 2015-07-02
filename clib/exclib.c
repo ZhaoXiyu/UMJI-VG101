@@ -6,6 +6,7 @@ void PS();
 
 void* ucalloc(size_t,size_t);
 void* umalloc(size_t);
+void* realloc(void*,size_t);
 
 FILE* ufopen(const char*,const char*);
 int getFileLen(FILE*);
@@ -27,6 +28,15 @@ void* ucalloc(size_t blocks,size_t size){
 	void* ptr=calloc(blocks,size);
 	if(ptr==NULL){
 		fprintf(stderr,"ERROR: Calloc Failed\n");
+		exit(1);
+	}
+	return ptr;
+}
+
+void* urealloc(void* ptr,size_t size){
+	void* ptr=relloc(ptr,size);
+	if(ptr==NULL){
+		fprintf(stderr,"ERROR: Realloc Failed\n");
 		exit(1);
 	}
 	return ptr;
