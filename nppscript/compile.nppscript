@@ -31,6 +31,7 @@ taskkill /IM "$(NAME_PART).exe" /F
 taskkill /IM "conhost.exe" /F
 :tkillsucc
 rem mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" "F:\Coding\UMJI-VG101\clib\exclib.c" -o "$(NAME_PART).exe"
+echo "Begin Compiling with gcc."
 mingw32-gcc.exe -Wall -g "$(CURRENT_DIRECTORY)\$(NAME_PART)*.c" -o "$(NAME_PART).exe"
 if $(EXITCODE)!=0 goto cmpfail 
 echo "Executing $(CURRENT_DIRECTORY)\$(NAME_PART).exe"

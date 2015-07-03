@@ -1,0 +1,11 @@
+ReadMe_Group_Assignment
+INPUT: NULL
+OUTPUT: 
+The program uses four new functions: 
+umalloc and urealc are used to allocate to wrap exceptions of collocation or reallocation.
+The resizeset is used to resize the memory for new elements if necessary, 
+function bcmp is used to determine whether the element exists in the previous set.
+
+In the newSet we set a a new set and in the deletes we let them be zero. 
+
+The addElem and remElem function are used to add and remove the determined elements.

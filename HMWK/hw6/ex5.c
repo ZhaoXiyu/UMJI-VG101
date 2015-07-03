@@ -11,6 +11,8 @@
 void* umalloc(size_t);
 void* urealloc(void*,size_t);
 int bcmp(unsigned char*,unsigned char*,size_t);
+void mempeek(void*,int);
+//binary compare
 void resizeSet(uset*,int);
 
 int main(){
@@ -18,11 +20,9 @@ int main(){
 	newSet(&intset,CHAR);
 	int i;
 	for(i=0;i<2000;i++){
-		//printf("%d %d \n",i,intset.card);
 		addElem(&i,&intset);
 	}
-	for(i=2500;i>1500;i--){
-		//printf("%d %d \n",i,intset.card);
+	for(i=2100;i>1500;i--){
 		remElem(&i,&intset);
 	}
 	deletSet(&intset);
@@ -34,7 +34,7 @@ void addElem(void *elem, uset *set){
 	int currsize=CARD*TYPE;
 	for(i=ELEM;(i-ELEM)<currsize;i+=TYPE)
 		if(bcmp(elem,i,TYPE))return;//Same element already exist
-	printf("Adding:%d %d\n",*(int*)elem,CARD);
+	//printf("Adding:%d %d\n",*(int*)elem,CARD);
 	resizeSet(set,currsize+TYPE);//resize the set to hold another elem
 	memcpy(ELEM+currsize,elem,TYPE);//add to the set.
 		//source,start byte+size,length
@@ -44,7 +44,7 @@ void addElem(void *elem, uset *set){
 
 void remElem(void *elem, uset *set){
 	byte* i;
-	printf("Removing:%d\n",*(int*)elem);
+	//printf("Removing:%d\n",*(int*)elem);
 	int currsize=CARD*TYPE;
 	for(i=ELEM;(i-ELEM)<currsize;i+=TYPE)
 		if(bcmp(elem,i,TYPE)){
@@ -74,7 +74,7 @@ void deletSet(uset *set){
 void* umalloc(size_t size){
 	void* ptr=malloc(size);
 	if(ptr==NULL){
-		fprintf(stderr,"ERROR: Calloc Failed\n");
+		fprintf(stderr,"ERROR: Malloc Failed\n");
 		exit(1);
 	}
 	return ptr;
@@ -106,9 +106,24 @@ void resizeSet(uset* set,int newsize){
 	t=newsize%(MCHNK*set->type);
 	newsize=newsize-t+MCHNK*set->type;
 	//calculate the new memory required to be allocated;
+	//printf("Resizing from %d to %d.\n",oldsize,newsize);
 	if(oldsize!=newsize){//if newsize is not equal to old size.
 		set->elem=urealloc(set->elem,newsize);//resize memory!
-		printf("Resizing from %d to %d.\n",oldsize,newsize);
+		
+		//mempeek(set->elem,newsize);
 	}
 	return;
 }
+/*
+void mempeek(void *p,int size){
+	printf("\nDEBUG INVOKE_MEMPEEK");	
+	unsigned char* pp=(unsigned char*)p;
+	int i;
+	for(i=0;i<size;i++){
+		if((i%8)==0)printf("\n0x%p:\t",p+i);
+		if((i%8)==4)printf("\b\b\b\b|   ");
+		printf("%X\t ",pp[i]);
+	}
+	printf("\n");
+	return;
+}*/
